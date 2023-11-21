@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap");
+@layer reset {
+    /* Box sizing rules */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Remove default margin */
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    figure,
+    blockquote,
+    dl,
+    dd {
+        margin-block-end: 0;
+    }
+
+    /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+    ul[role="list"],
+    ol[role="list"] {
+        list-style: none;
+    }
+
+    /* Set core root defaults */
+    html:focus-within {
+        scroll-behavior: smooth;
+    }
+
+    /* Set core body defaults */
+    body {
+        min-height: 100vh;
+        text-rendering: optimizeSpeed;
+        line-height: 1.5;
+    }
+
+    /* A elements that don't have a class get default styles */
+    a:not([class]) {
+        text-decoration-skip-ink: auto;
+    }
+
+    /* Make images easier to work with */
+    img,
+    picture {
+        max-width: 100%;
+        display: block;
+    }
+
+    /* Inherit fonts for inputs and buttons */
+    input,
+    button,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+    /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+    @media (prefers-reduced-motion: reduce) {
+        html:focus-within {
+            scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+@layer utility {
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+}
+:root {
+    /* PRIMARY */
+    --primary-purple: hsl(259, 100%, 65%);
+    --primary-light-red: hsl(0, 100%, 67%);
+
+    /* NEUTRAL */
+    --neutral-white: hsl(0, 0%, 100%);
+    --neutral-off-white: hsl(0, 0%, 94%);
+    --neutral-light-grey: hsl(0, 0%, 86%);
+    --neutral-smokey-grey: hsl(0, 1%, 44%);
+    --neutral-off-black: hsl(0, 0%, 8%);
+
+    /* FONT */
+    --font-input: clamp(1.5rem, 4vw, 2rem);
+    --font-label: clamp(0.8rem, 2vw, 1.5rem);
+    --font-output: clamp(3rem, 10vw, 5rem);
+    --font-family: "Poppins", sans-serif;
+}
+body {
+    font-family: var(--font-family);
+    background-color: var(--neutral-off-white);
+    padding-inline: 1rem;
+    display: grid;
+    place-items: center;
+}
+main {
+    /* width: min(100% - 2rem, 90rem); */
+    margin-inline: auto;
+    background-color: var(--neutral-white);
+    padding-inline: 1.5rem;
+    padding-block: 2.5rem;
+    border-radius: 1rem 1rem 15vh 1rem;
+    display: grid;
+    gap: 2rem;
+}
+
+/* -------FORM------ */
+form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    row-gap: 2rem;
+}
+label {
+    font-size: var(--font-label);
+    text-transform: uppercase;
+    color: var(--neutral-smokey-grey);
+    letter-spacing: 4px;
+}
+input {
+    font-size: var(--font-input);
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border: 1px solid var(--neutral-light-grey);
+    width: 100%;
+    border-radius: 0.5rem;
+}
+.line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--neutral-light-grey);
+}
+/* button {
+    grid-row: 2;
+} */
+.line,
+button {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    place-self: center;
+}
+button {
+    border: 0;
+    outline: 0;
+    background-color: var(--primary-purple);
+    padding: 1rem;
+    border-radius: 50vh;
+    width: 4rem;
+}
+input:focus {
+    outline: 1px solid var(--primary-purple);
+}
+@media (min-width: 800px) {
+    form {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+h2 {
+    font-size: var(--font-output);
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1;
+}
+h2 > span {
+    color: var(--primary-purple);
+}
