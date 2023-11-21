@@ -100,24 +100,29 @@
     --neutral-off-black: hsl(0, 0%, 8%);
 
     /* FONT */
-    --font-input: clamp(1.5rem, 4vw, 2rem);
-    --font-label: clamp(0.8rem, 2vw, 1.5rem);
-    --font-output: clamp(3rem, 10vw, 5rem);
+    --font-input: clamp(1.2rem, 4vw, 2rem);
+    --font-label: clamp(0.8rem, 2vw, 1rem);
+    --font-output: clamp(3.2rem, 10vw, 7rem);
     --font-family: "Poppins", sans-serif;
+
+    /* MISC */
+    --padding-inline-main: clamp(1.5rem, 5vw, 3rem);
+    --padding-block-main: clamp(2.5rem, 5vw, 4rem);
+    --width-main: min(100% - 2rem, 50rem);
 }
 body {
     font-family: var(--font-family);
     background-color: var(--neutral-off-white);
-    padding-inline: 1rem;
-    display: grid;
+    /* display: grid; */
+    margin-top: 2rem;
     place-items: center;
 }
 main {
-    /* width: min(100% - 2rem, 90rem); */
+    width: var(--width-main);
     margin-inline: auto;
     background-color: var(--neutral-white);
-    padding-inline: 1.5rem;
-    padding-block: 2.5rem;
+    padding-inline: var(--padding-inline-main);
+    padding-block: var(--padding-block-main);
     border-radius: 1rem 1rem 15vh 1rem;
     display: grid;
     gap: 2rem;
@@ -129,6 +134,10 @@ form {
     grid-template-columns: repeat(3, 1fr);
     gap: 0.8rem;
     row-gap: 2rem;
+}
+form > div {
+    display: grid;
+    gap: 0.5rem;
 }
 label {
     font-size: var(--font-label);
@@ -143,20 +152,15 @@ input {
     border: 1px solid var(--neutral-light-grey);
     width: 100%;
     border-radius: 0.5rem;
+    caret-color: var(--primary-purple);
+}
+input:focus {
+    outline: 1px solid var(--primary-purple);
 }
 .line {
     width: 100%;
     height: 2px;
     background-color: var(--neutral-light-grey);
-}
-/* button {
-    grid-row: 2;
-} */
-.line,
-button {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    place-self: center;
 }
 button {
     border: 0;
@@ -164,14 +168,37 @@ button {
     background-color: var(--primary-purple);
     padding: 1rem;
     border-radius: 50vh;
-    width: 4rem;
+    width: clamp(4rem, 7vw, 6rem);
+    display: grid;
+    place-content: center;
+    aspect-ratio: 1/1;
+    transition: background-color 0.15s ease-in-out;
 }
-input:focus {
-    outline: 1px solid var(--primary-purple);
+button:hover {
+    background-color: black;
+}
+.line,
+button {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    place-self: center;
+    cursor: pointer;
 }
 @media (min-width: 800px) {
+    body {
+        display: grid;
+    }
+    main {
+        border-bottom-right-radius: 20vh;
+        gap: 0;
+    }
     form {
         grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        row-gap: 0;
+    }
+    button {
+        place-self: end;
     }
 }
 
@@ -183,4 +210,9 @@ h2 {
 }
 h2 > span {
     color: var(--primary-purple);
+}
+
+form.submitted input[type="text"]:invalid {
+    border: 1px solid red;
+    outline: 0;
 }

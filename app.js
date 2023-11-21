@@ -1,7 +1,10 @@
 const submitButton = document.querySelector("#submit");
 const outputs = document.querySelectorAll("h2 > span");
+const form = document.querySelector("form");
+
 submitButton.addEventListener("click", (e) => {
     e.preventDefault();
+    form.classList.add("submitted");
     const inputYear = document.querySelector("#year").value;
     const inputDay = document.querySelector("#day").value;
     const inputMonth = document.querySelector("#month").value;
